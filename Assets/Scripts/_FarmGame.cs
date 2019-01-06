@@ -8,39 +8,6 @@
 // {
 //     public class FarmGame
 //     {
-//         // per cow:
-//         //  2 litres milk per food
-//         //      * 2 money per litre milk = GROSS 4 money per feed-milk cycle
-//         //      - 3 money per food = NET 1 money per feed-milk cycle
-//         private static readonly int MilkLitreSellPrice = 2;
-//         private static readonly int MilkLitresPerFood = 2;
-//         private static readonly int CowBuyPriceMultiplier = 10;
-//         private static readonly int FarmManagerSalary = 1;
-
-//         public int Money { get; private set; }
-//         public int Debt { get; private set; }
-
-//         public int NumberOfCows { get; private set; }
-//         public int BagsOfCowFood { get; private set; }
-//         public int CowFoodBagBuyPrice { get; private set; }
-
-//         public int LitresOfMilk { get; private set; }
-//         private int LitresPerCowRemainingToBeMilked;
-
-//         public bool FarmManagerHired { get; private set; }
-
-//         public FarmGame()
-//         {
-//             Money = 0;
-//             Debt = 0;
-//             NumberOfCows = 1;
-//             BagsOfCowFood = 1;
-//             CowFoodBagBuyPrice = 3;
-//             LitresOfMilk = 0;
-//             LitresPerCowRemainingToBeMilked = 0;
-//             FarmManagerHired = false;
-//         }
-
 //         public string FeedCows()
 //         {
 //             if (NumberOfCows <= 0)
@@ -192,51 +159,5 @@
 
 //             playerInventory.Clear();
 //         }
-
-//         public int CalculateTotalMilkSellPrice() =>
-//             LitresOfMilk * MilkLitreSellPrice;
-
-//         public int CalculateNextCowBuyPrice() =>
-//             NumberOfCows * CowBuyPriceMultiplier;
-
-//         public bool CanBuyCowFood(int amountOfFood) =>
-//             Money >= CowFoodBagBuyPrice * amountOfFood;
-
-//         public bool CanBuyEnoughFoodToFeedAllCows()
-//         {
-//             int foodShortage = NumberOfCows - BagsOfCowFood; // this can be negative. it doesn't matter
-//             int moneyRequiredToTopUp = foodShortage * CowFoodBagBuyPrice;
-//             return Money >= moneyRequiredToTopUp;
-//         }
-
-//         public bool CanFeedCows() =>
-//             BagsOfCowFood >= NumberOfCows;
-
-//         public bool CanMilkCows() =>
-//             LitresPerCowRemainingToBeMilked > 0;
-
-//         public bool CanSellMilk() =>
-//             LitresOfMilk > 0;
-
-//         public bool CanBuyCow() =>
-//             Money >= CalculateNextCowBuyPrice()
-//                 && Debt <= 0;
-
-//         public bool CanBorrowMoney() =>
-//             Debt <= 0;
-
-//         public bool CanPayDebt() =>
-//             Debt > 0
-//                 && Money >= Debt;
-
-//         public bool CanHireFarmManager() =>
-//             !FarmManagerHired
-//                 && NumberOfCows >= 2;
-
-//         public bool CanGoOnAdventure() =>
-//             FarmManagerHired;
-
-//         public bool HasFarmManager() =>
-//             FarmManagerHired;
 //     }
 // }
