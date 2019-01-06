@@ -190,7 +190,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 14253774}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: PayDebt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &14253774
@@ -547,7 +558,7 @@ GameObject:
   - component: {fileID: 211711927}
   - component: {fileID: 211711926}
   m_Layer: 5
-  m_Name: MilkCowsButton
+  m_Name: MilkMyCowsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,7 +623,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 211711927}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: MilkCows
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &211711927
@@ -810,10 +832,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1441671574}
   m_HandleRect: {fileID: 38240917}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1740,7 +1762,7 @@ GameObject:
   - component: {fileID: 807362277}
   - component: {fileID: 807362276}
   m_Layer: 5
-  m_Name: BuyCowPriceAmountText
+  m_Name: BuyACowPriceAmountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1819,7 +1841,7 @@ GameObject:
   - component: {fileID: 938469395}
   - component: {fileID: 938469394}
   m_Layer: 5
-  m_Name: Text
+  m_Name: MilkMyCowsButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1977,7 +1999,7 @@ GameObject:
   - component: {fileID: 1201369081}
   - component: {fileID: 1201369080}
   m_Layer: 5
-  m_Name: BuyCowPriceText
+  m_Name: BuyACowPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2056,7 +2078,7 @@ GameObject:
   - component: {fileID: 1201733958}
   - component: {fileID: 1201733957}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FeedMyCowsButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2215,7 +2237,7 @@ GameObject:
   - component: {fileID: 1298407062}
   - component: {fileID: 1298407061}
   m_Layer: 5
-  m_Name: HireFarmManagerButton
+  m_Name: HireAFarmManagerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2280,7 +2302,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1298407062}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: HireAFarmManager
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1298407062
@@ -2433,8 +2466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -234, y: -213}
-  m_SizeDelta: {x: 468, y: 30}
+  m_AnchoredPosition: {x: -234, y: -198}
+  m_SizeDelta: {x: 468, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1326077856
 MonoBehaviour:
@@ -2491,7 +2524,7 @@ GameObject:
   - component: {fileID: 1336365449}
   - component: {fileID: 1336365448}
   m_Layer: 5
-  m_Name: BuyCowButton
+  m_Name: BuyACowButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2556,7 +2589,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1336365449}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: BuyACow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1336365449
@@ -2639,16 +2683,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d2fd7a1f18a404495fe916fcb2dc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FeedCowsButton: {fileID: 1546400403}
-  MilkCowsButton: {fileID: 211711924}
+  FeedMyCowsButton: {fileID: 1546400403}
+  FeedMyCowsButtonText: {fileID: 1201733955}
+  MilkMyCowsButton: {fileID: 211711924}
+  MilkMyCowsButtonText: {fileID: 938469392}
+  ActionLogText: {fileID: 1326077854}
   BorrowMoneyButton: {fileID: 1719502855}
+  MoneyAmountText: {fileID: 697754439}
   PayDebtButton: {fileID: 14253771}
+  DebtAmountText: {fileID: 511262692}
   SellMilkButton: {fileID: 1805013575}
+  MilkAmountText: {fileID: 1324499519}
+  MilkSellPriceAmountText: {fileID: 1181648442}
   BuyCowFoodButton: {fileID: 1775783000}
+  BuyCowFoodButtonText: {fileID: 1409147383}
+  CowFoodAmountText: {fileID: 2126480220}
+  CowFoodBuyPriceAmountText: {fileID: 1965001112}
   CowFoodBuyAmountSlider: {fileID: 321046788}
-  BuyCowButton: {fileID: 1336365446}
+  BuyACowButton: {fileID: 1336365446}
+  CowAmountText: {fileID: 726682540}
+  BuyACowPriceAmountText: {fileID: 807362274}
   FarmManagerText: {fileID: 543148530}
-  HireFarmManagerButton: {fileID: 1298407059}
+  HireAFarmManagerButton: {fileID: 1298407059}
   GoOnAnAdventureButton: {fileID: 1760251017}
 --- !u!1 &1402974763
 GameObject:
@@ -2744,7 +2800,7 @@ GameObject:
   - component: {fileID: 1409147386}
   - component: {fileID: 1409147385}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BuyCowFoodButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2977,7 +3033,7 @@ GameObject:
   - component: {fileID: 1546400406}
   - component: {fileID: 1546400405}
   m_Layer: 5
-  m_Name: FeedCowsButton
+  m_Name: FeedMyCowsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3042,7 +3098,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1546400406}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: FeedCows
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1546400406
@@ -3379,7 +3446,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1719502858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: BorrowMoney
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1719502858
@@ -3615,7 +3693,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1775783003}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: BuyCowFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1775783003
@@ -3733,7 +3822,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1805013578}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1376255766}
+        m_MethodName: SellMilk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1805013578
@@ -4123,8 +4223,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -234, y: -5.025}
-  m_SizeDelta: {x: 468, y: 385.95}
+  m_AnchoredPosition: {x: -234, y: 9.975}
+  m_SizeDelta: {x: 468, y: 355.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2087011672
 MonoBehaviour:

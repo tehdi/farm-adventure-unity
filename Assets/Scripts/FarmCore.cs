@@ -8,10 +8,10 @@ public class FarmCore : MonoBehaviour
         //  2 litres milk per food
         //      * 2 money per litre milk = GROSS 4 money per feed-milk cycle
         //      - 3 money per food = NET 1 money per feed-milk cycle
-        private static readonly int CowFoodBagBuyPrice = 3;
+        public static readonly int CowFoodBagBuyPrice = 3;
         private static readonly int CowBuyPriceMultiplier = 10;
         private static readonly int MilkLitreSellPrice = 2;
-        private static readonly int MilkLitresPerFood = 2;
+        public static readonly int MilkLitresPerFood = 2;
         private static readonly int FarmManagerSalary = 1;
 
         public static int Money = 0;
@@ -21,9 +21,9 @@ public class FarmCore : MonoBehaviour
         public static int BagsOfCowFood = 1;
 
         public static int LitresOfMilk = 0;
-        private static int LitresPerCowRemainingToBeMilked = 0;
+        public static int LitresPerCowRemainingToBeMilked = 0;
 
-        private static bool FarmManagerHired = false;
+        public static bool FarmManagerHired = false;
 
         public static int CalculateTotalMilkSellPrice() =>
             LitresOfMilk * MilkLitreSellPrice;
