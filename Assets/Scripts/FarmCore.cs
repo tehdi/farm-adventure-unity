@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class FarmCore : MonoBehaviour
+﻿namespace FarmAdventure
 {
+    public class FarmCore
+    {
         // per cow:
         //  2 litres milk per food
         //      * 2 money per litre milk = GROSS 4 money per feed-milk cycle
@@ -70,4 +68,5 @@ public class FarmCore : MonoBehaviour
 
         public static bool HasFarmManager() =>
             FarmManagerHired;
+    }
 }
