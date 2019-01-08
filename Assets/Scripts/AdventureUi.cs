@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,12 +8,16 @@ namespace FarmAdventure
 {
     public class AdventureUi : MonoBehaviour
     {
+        private static bool FirstLoad = true;
+
         // player is 32x32 and (0, 0) is the middle of a 480x352 map (32*15 x 32*11)
         private static readonly int PIXELS_PER_UNIT = 32;
         private static readonly int MIN_X = -224; // (224 + (32 / 2)) * 2 = 480
         private static readonly int MAX_X = 224;
         private static readonly int MIN_Y = -160;
         private static readonly int MAX_Y = 160;
+        private static readonly int MIN_TOWNS = 5;
+        private static readonly int MAX_TOWNS = 8;
 
         public GameObject AdventureMapPanel;
         public Image PlayerImage;
@@ -33,17 +38,27 @@ namespace FarmAdventure
 
         public Button EnterYourFarmButton;
 
+        private Town CurrentTown { get { return AdventureCore.CurrentTown; } }
+
         void Start()
         {
-            // put player image in correct starting position?
+            if (FirstLoad)
+            {
+                AdventureCore.InitializeNewGame(MIN_X, MAX_X, MIN_Y, MAX_Y, PIXELS_PER_UNIT, MIN_TOWNS, MAX_TOWNS);
+                FirstLoad = false;
+            }
+
+            PlayerImage.transform.localPosition = new Vector2(AdventureCore.PlayerXLocation, AdventureCore.PlayerYLocation);
+
+            Debug.Log($"Starting town is at {CurrentTown.XLocation}, {CurrentTown.YLocation}");
+            Debug.Log($"Raw player starting location is {AdventureCore.PlayerXLocation}, {AdventureCore.PlayerYLocation}");
         }
 
         void Update()
         {
             MovePlayer();
-            AdventureCore.UpdatePlayerLocation(
-                (int)PlayerImage.transform.localPosition.x / PIXELS_PER_UNIT,
-                (int)PlayerImage.transform.localPosition.y / PIXELS_PER_UNIT);
+            AdventureCore.MovePlayerTo((int)PlayerImage.transform.localPosition.x, (int)PlayerImage.transform.localPosition.y);
+            // if player is in town, sub player image for player-in-town image
 
             CurrentLocationText.text = PrepareCurrentLocationText();
             QuestLogText.text = PrepareQuestLogText();
@@ -90,19 +105,18 @@ namespace FarmAdventure
 
         private string PrepareCurrentLocationText()
         {
-            Town currentTown = AdventureCore.CurrentTown;
-            if (currentTown == null)
+            if (CurrentTown == null)
             {
                 return "";
             }
-            return $"You're in {currentTown.Name}.";
+            return $"You're in {CurrentTown.Name}.";
         }
 
         private string PrepareQuestLogText()
         {
             List<Quest> completableQuests = AdventureCore.CompletableQuestsForCurrentLocation;
             List<Quest> activeQuests = AdventureCore.ActiveQuestsForOtherLocations;
-            Quest availableQuest = AdventureCore.CurrentTown == null ? null : AdventureCore.CurrentTown.Quest;
+            Quest availableQuest = CurrentTown == null ? null : CurrentTown.Quest;
 
             StringBuilder questLogOutputBuilder = new StringBuilder();
             if (completableQuests.Count > 0)

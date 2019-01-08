@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FarmAdventure
 {
     public class Player
     {
+        public int XLocation { get; set; }
+        public int YLocation { get; set; }
+        public Tuple<int, int> Location { get { return new Tuple<int, int>(XLocation, YLocation); } }
+        
         public PlayerInventory Inventory { get; }
         public int Money { get { return Inventory.Money; } }
         public int CowFood { get { return Inventory.CowFood; } }
@@ -12,10 +17,13 @@ namespace FarmAdventure
 
         public List<Quest> ActiveQuests { get; }
 
-        public Player()
+        public Player(int xLocation, int yLocation)
         {
             ActiveQuests = new List<Quest>();
             Inventory = new PlayerInventory();
+
+            XLocation = xLocation;
+            YLocation = yLocation;
         }
 
         public bool HasQuestWithDestination(Town town) =>
