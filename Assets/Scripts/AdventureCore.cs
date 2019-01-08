@@ -6,6 +6,8 @@ namespace FarmAdventure
     {
         private static Player Player = new Player();
 
+        public static int PlayerXLocation;
+        public static int PlayerYLocation;
         public static int PlayerMoney { get { return Player.Money; } }
         public static int PlayerMilk { get { return Player.Milk; } }
         public static int PlayerCowFood { get { return Player.CowFood; } }
@@ -16,17 +18,11 @@ namespace FarmAdventure
         public static List<Quest> ActiveQuestsForOtherLocations { get { return Player.QuestsForDestinationsOtherThan(CurrentTown); } }
         public static List<Quest> CompletableQuestsForCurrentLocation { get { return Player.ActiveQuestsForDestination(CurrentTown); } }
 
-        public static bool CanMoveNorth() =>
-            true;
-
-        public static bool CanMoveWest() =>
-            true;
-
-        public static bool CanMoveEast() =>
-            true;
-
-        public static bool CanMoveSouth() =>
-            true;
+        public static void UpdatePlayerLocation(int newX, int newY)
+        {
+            PlayerXLocation = newX;
+            PlayerYLocation = newY;
+        }
 
         public static bool CanAcceptQuest() =>
             CurrentTown != null && CurrentTown.Quest != null;
