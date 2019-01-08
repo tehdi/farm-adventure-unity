@@ -8,15 +8,7 @@
 // {
 //     public class AdventureGame
 //     {
-//         private Player Player;
 //         public List<Town> Towns { get; private set; }
-
-//         public int PlayerXLocation { get { return Player.XLocation; } }
-//         public int PlayerYLocation { get { return Player.YLocation; } }
-//         public int PlayerMoney { get { return Player.Money; } }
-//         public int PlayerCowFood { get { return Player.CowFood; } }
-//         public int PlayerMilk { get { return Player.Milk; } }
-
 //         private int PlayerMovesMadeSinceLastLeavingFarm = 0;
 
 //         private Random random = new Random();
@@ -65,34 +57,7 @@
 
 //         public bool MovePlayer(int deltaX, int deltaY, int maxX, int maxY)
 //         {
-//             // if moving would go out of bounds, then don't move
-//             if (Player.YLocation + deltaY < 0)
-//             {
-//                 deltaY = 0;
-//             }
-//             if (Player.YLocation + deltaY > maxY)
-//             {
-//                 deltaY = 0;
-//             }
-
-//             if (Player.XLocation + deltaX < 0)
-//             {
-//                 deltaX = 0;
-//             }
-//             if (Player.XLocation + deltaX > maxX)
-//             {
-//                 deltaX = 0;
-//             }
-
-//             if (deltaX == 0 && deltaY == 0)
-//             {
-//                 return false;
-//             }
-
-//             Player.YLocation += deltaY;
-//             Player.XLocation += deltaX;
 //             PlayerMovesMadeSinceLastLeavingFarm++;
-//             return true;
 //         }
 
 //         public void CompleteQuestsForDestination(Town town)
@@ -103,21 +68,6 @@
 //             QuestFactory.LoadUpSomeQuests(questOrigins, Towns);
 
 //             Player.CompleteQuestsForDestination(town);
-//         }
-
-//         public List<Quest> ActivePlayerQuestsForDestination(Town town)
-//         {
-//             return Player.ActiveQuestsForDestination(town);
-//         }
-
-//         public List<Quest> PlayerQuestsForDestinationsOtherThan(Town town)
-//         {
-//             return Player.QuestsForDestinationsOtherThan(town);
-//         }
-
-//         public bool PlayerHasQuestWithDestination(Town town)
-//         {
-//             return Player.HasQuestWithDestination(town);
 //         }
 
 //         public void AddActivePlayerQuest(Quest quest)
