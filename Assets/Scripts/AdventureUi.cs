@@ -22,8 +22,8 @@ namespace FarmAdventure
         public GameObject AdventureMapPanel;
         public GameObject PlayerImage;
         private GameObject Player;
-        public GameObject TownWithoutPlayerImage;
-        public GameObject TownWithPlayerImage;
+        public GameObject TownWithoutPlayerPrefab;
+        public GameObject TownWithPlayerPrefab;
 
         public Button MoveNorthButton;
         public Button MoveWestButton;
@@ -65,12 +65,12 @@ namespace FarmAdventure
             {
                 if (town == CurrentTown)
                 {
-                    GameObject townWithPlayer = AddTownToMap(town, TownWithPlayerImage);
+                    GameObject townWithPlayer = AddTownToMap(town, TownWithPlayerPrefab);
                     Player.transform.localPosition = townWithPlayer.transform.localPosition;
                 }
                 else
                 {
-                    AddTownToMap(town, TownWithoutPlayerImage);
+                    AddTownToMap(town, TownWithoutPlayerPrefab);
                 }
             }
         }
@@ -134,13 +134,13 @@ namespace FarmAdventure
                 {
                     // player moved out of startTown
                     Destroy(Towns[startTown]);
-                    GameObject townWithoutPlayer = AddTownToMap(startTown, TownWithoutPlayerImage);
+                    GameObject townWithoutPlayer = AddTownToMap(startTown, TownWithoutPlayerPrefab);
                 }
                 if (CurrentTown != null)
                 {
                     // player moved into CurrentTown
                     Destroy(Towns[CurrentTown]);
-                    GameObject townWithoutPlayer = AddTownToMap(CurrentTown, TownWithPlayerImage);
+                    GameObject townWithoutPlayer = AddTownToMap(CurrentTown, TownWithPlayerPrefab);
                 }
             }
         }
@@ -201,9 +201,13 @@ namespace FarmAdventure
             return newValue >= minAllowed && newValue <= maxAllowed;
         }
 
-        private GameObject AddTownToMap(Town town, GameObject image)
+        private GameObject AddTownToMap(Town town, GameObject townPrefab)
         {
-            GameObject townImage = Instantiate(image, AdventureMapPanel.transform, false);
+            GameObject townImage = Instantiate(townPrefab, AdventureMapPanel.transform, false);
+            Tooltip tooltip = townImage.transform.Find("TooltipScript").GetComponent<Tooltip>();
+            tooltip.SetText(town.Name);
+            tooltip.ResizeToFitText();
+            
             townImage.transform.localPosition = new Vector2(town.XLocation, town.YLocation);
             Towns[town] = townImage;
             return townImage;
