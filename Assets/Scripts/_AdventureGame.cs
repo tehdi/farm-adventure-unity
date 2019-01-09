@@ -11,50 +11,6 @@
 //         public List<Town> Towns { get; private set; }
 //         private int PlayerMovesMadeSinceLastLeavingFarm = 0;
 
-//         private Random random = new Random();
-
-//         public void StartNewGame(int maxX, int maxY, int minTowns, int maxTowns)
-//         {
-//             CreateTowns(maxX, maxY, minTowns, maxTowns);
-//             InitializePlayer();
-
-//             QuestFactory.LoadUpSomeQuests(Towns);
-//         }
-
-//         public List<Town> CreateTowns(int maxX, int maxY, int minTowns, int maxTowns)
-//         {
-//             int townChance = maxX * maxY / minTowns;
-
-//             do
-//             {
-//                 Towns = new List<Town>();
-//                 for (int y = 0; y < maxY; y++)
-//                 {
-//                     for (int x = 0; x < maxX; x++)
-//                     {
-//                         if (random.Next() % townChance == 0)
-//                         {
-//                             Town town = TownFactory.CreateTown(x, y);
-//                             Towns.Add(town);
-//                         }
-//                     }
-//                 }
-//             } while (Towns.Count < minTowns || Towns.Count > maxTowns);
-
-//             return Towns;
-//         }
-
-//         public void InitializePlayer()
-//         {
-//             Town startingTown = Towns.ElementAt(random.Next(0, Towns.Count));
-//             Player = new Player() {
-//                 XLocation = startingTown.XLocation,
-//                 YLocation = startingTown.YLocation
-//             };
-
-//             startingTown.MakeHome();
-//         }
-
 //         public bool MovePlayer(int deltaX, int deltaY, int maxX, int maxY)
 //         {
 //             PlayerMovesMadeSinceLastLeavingFarm++;
