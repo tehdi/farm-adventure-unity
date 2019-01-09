@@ -20,7 +20,10 @@ namespace FarmAdventure
         private static readonly int MAX_TOWNS = 8;
 
         public GameObject AdventureMapPanel;
-        public Image PlayerImage;
+        public GameObject PlayerImage;
+        private GameObject Player;
+        public GameObject TownWithoutPlayerImage;
+        public GameObject TownWithPlayerImage;
 
         public Button MoveNorthButton;
         public Button MoveWestButton;
@@ -39,6 +42,7 @@ namespace FarmAdventure
         public Button EnterYourFarmButton;
 
         private Town CurrentTown { get { return AdventureCore.CurrentTown; } }
+        private Dictionary<Town, GameObject> Towns; // so I can redraw towns when the player enters or leaves them
 
         void Start()
         {
@@ -48,17 +52,32 @@ namespace FarmAdventure
                 FirstLoad = false;
             }
 
-            PlayerImage.transform.localPosition = new Vector2(AdventureCore.PlayerXLocation, AdventureCore.PlayerYLocation);
+            DrawMap();
+        }
 
-            Debug.Log($"Starting town is at {CurrentTown.XLocation}, {CurrentTown.YLocation}");
-            Debug.Log($"Raw player starting location is {AdventureCore.PlayerXLocation}, {AdventureCore.PlayerYLocation}");
+        private void DrawMap()
+        {
+            Player = Instantiate(PlayerImage, AdventureMapPanel.transform, false);
+            Player.SetActive(CurrentTown == null);
+            Towns = new Dictionary<Town, GameObject>();
+
+            foreach (var town in AdventureCore.Towns.Values)
+            {
+                if (town == CurrentTown)
+                {
+                    GameObject townWithPlayer = AddTownToMap(town, TownWithPlayerImage);
+                    Player.transform.localPosition = townWithPlayer.transform.localPosition;
+                }
+                else
+                {
+                    AddTownToMap(town, TownWithoutPlayerImage);
+                }
+            }
         }
 
         void Update()
         {
             MovePlayer();
-            AdventureCore.MovePlayerTo((int)PlayerImage.transform.localPosition.x, (int)PlayerImage.transform.localPosition.y);
-            // if player is in town, sub player image for player-in-town image
 
             CurrentLocationText.text = PrepareCurrentLocationText();
             QuestLogText.text = PrepareQuestLogText();
@@ -77,10 +96,12 @@ namespace FarmAdventure
             // I had some trouble with floats when I tried to use transform.translate,
             // so I went the slightly more complicated route of sorting out the numbers myself and passing a direct "move to" command.
 
+            bool playerMoved = false;
+            Town startTown = CurrentTown;
+
             // local position is the centre point of the player image within its parent panel, regardless of anchor point
-            Vector2 startingPosition = PlayerImage.transform.localPosition;
-            int startX = (int)startingPosition.x;
-            int startY = (int)startingPosition.y;
+            int startX = AdventureCore.PlayerXLocation;
+            int startY = AdventureCore.PlayerYLocation;
 
             // in one frame, you can move either horizontally or vertically. not both
             if (Input.GetButtonDown("Horizontal"))
@@ -89,7 +110,8 @@ namespace FarmAdventure
                 int newX = startX + horizontalMovement;
                 if (IsBetweenInclusive(newX, MIN_X, MAX_X))
                 {
-                    PlayerImage.transform.localPosition = new Vector2(newX, startY);
+                    Player.transform.localPosition = new Vector2(newX, startY);
+                    playerMoved = true;
                 }
             }
             else if (Input.GetButtonDown("Vertical"))
@@ -98,7 +120,27 @@ namespace FarmAdventure
                 int newY = startY + verticalMovement;
                 if (IsBetweenInclusive(newY, MIN_Y, MAX_Y))
                 {
-                    PlayerImage.transform.localPosition = new Vector2(startX, newY);
+                    Player.transform.localPosition = new Vector2(startX, newY);
+                    playerMoved = true;
+                }
+            }
+
+            if (playerMoved)
+            {
+                AdventureCore.MovePlayerTo((int)Player.transform.localPosition.x, (int)Player.transform.localPosition.y);
+                Player.SetActive(CurrentTown == null); // player image is only shown if player is not in a town
+
+                if (startTown != null)
+                {
+                    // player moved out of startTown
+                    Destroy(Towns[startTown]);
+                    GameObject townWithoutPlayer = AddTownToMap(startTown, TownWithoutPlayerImage);
+                }
+                if (CurrentTown != null)
+                {
+                    // player moved into CurrentTown
+                    Destroy(Towns[CurrentTown]);
+                    GameObject townWithoutPlayer = AddTownToMap(CurrentTown, TownWithPlayerImage);
                 }
             }
         }
@@ -157,6 +199,14 @@ namespace FarmAdventure
         private bool IsBetweenInclusive(int newValue, int minAllowed, int maxAllowed)
         {
             return newValue >= minAllowed && newValue <= maxAllowed;
+        }
+
+        private GameObject AddTownToMap(Town town, GameObject image)
+        {
+            GameObject townImage = Instantiate(image, AdventureMapPanel.transform, false);
+            townImage.transform.localPosition = new Vector2(town.XLocation, town.YLocation);
+            Towns[town] = townImage;
+            return townImage;
         }
     }
 }
