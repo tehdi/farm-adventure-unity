@@ -44,11 +44,13 @@ namespace FarmAdventure
         private Town CurrentTown { get { return AdventureCore.CurrentTown; } }
         private Dictionary<Town, GameObject> Towns; // so I can redraw towns when the player enters or leaves them
 
+        private AdventureLogic AdventureLogic = new AdventureLogic();
+
         void Start()
         {
             if (FirstLoad)
             {
-                AdventureCore.InitializeNewGame(MIN_X, MAX_X, MIN_Y, MAX_Y, PIXELS_PER_UNIT, MIN_TOWNS, MAX_TOWNS);
+                AdventureLogic.InitializeNewGame(MIN_X, MAX_X, MIN_Y, MAX_Y, PIXELS_PER_UNIT, MIN_TOWNS, MAX_TOWNS);
                 FirstLoad = false;
             }
 
@@ -127,7 +129,7 @@ namespace FarmAdventure
 
             if (playerMoved)
             {
-                AdventureCore.MovePlayerTo((int)Player.transform.localPosition.x, (int)Player.transform.localPosition.y);
+                AdventureLogic.MovePlayerTo((int)Player.transform.localPosition.x, (int)Player.transform.localPosition.y);
                 Player.SetActive(CurrentTown == null); // player image is only shown if player is not in a town
 
                 if (startTown != null)
