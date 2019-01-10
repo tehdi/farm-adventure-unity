@@ -6,6 +6,7 @@ namespace FarmAdventure
 {
     public class AdventureLogic
     {
+        private Town CurrentTown { get { return AdventureCore.CurrentTown; } }
         private Random Random = new Random();
 
         public void InitializeNewGame(int minX, int maxX, int minY, int maxY, int scale, int minTowns, int maxTowns)
@@ -19,6 +20,30 @@ namespace FarmAdventure
         {
             AdventureCore.Player.XLocation = xLocation;
             AdventureCore.Player.YLocation = yLocation;
+        }
+
+        public void AcceptCurrentTownQuest()
+        {
+            if (CurrentTown != null)
+            {
+                Quest quest = CurrentTown.Quest;
+                AdventureCore.Player.AcceptQuest(quest);
+                CurrentTown.Quest = null;
+            }
+        }
+
+        public void CompleteQuestsForCurrentTown()
+        {
+            if (CurrentTown != null)
+            {
+                // generate new quests originating on the towns that originated the quests we're about to complete
+                // this makes sure we don't run out of quests
+                var completableQuests = AdventureCore.Player.ActiveQuestsForDestination(CurrentTown);
+                var questOrigins = completableQuests.Select(q => q.Origin).ToList();
+                QuestFactory.LoadUpSomeQuests(questOrigins, AdventureCore.Towns.Values.ToList());
+
+                AdventureCore.Player.CompleteQuests(completableQuests);
+            }
         }
 
         // town locations are unscaled, but cleanly divisible by the scale.

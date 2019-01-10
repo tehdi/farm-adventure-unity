@@ -16,21 +16,6 @@
 //             PlayerMovesMadeSinceLastLeavingFarm++;
 //         }
 
-//         public void CompleteQuestsForDestination(Town town)
-//         {
-//             // before completing the quests, generate new quests in the about-to-be-completed quests' origins
-//             var completableQuests = Player.ActiveQuestsForDestination(town);
-//             var questOrigins = completableQuests.Select(q => q.Origin).ToList();
-//             QuestFactory.LoadUpSomeQuests(questOrigins, Towns);
-
-//             Player.CompleteQuestsForDestination(town);
-//         }
-
-//         public void AddActivePlayerQuest(Quest quest)
-//         {
-//             Player.ActiveQuests.Add(quest);
-//         }
-
 //         public void ReturnToFarm()
 //         {
 //             GameManager.ReturnToFarm(PlayerMovesMadeSinceLastLeavingFarm, Player.Inventory);

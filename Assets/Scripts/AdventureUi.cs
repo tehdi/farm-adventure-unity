@@ -57,6 +57,32 @@ namespace FarmAdventure
             DrawMap();
         }
 
+        void Update()
+        {
+            MovePlayer();
+
+            CurrentLocationText.text = PrepareCurrentLocationText();
+            QuestLogText.text = PrepareQuestLogText();
+            AcceptQuestButton.interactable = AdventureCore.CanAcceptQuest();
+            CompleteQuestButton.interactable = AdventureCore.CanCompleteQuest();
+
+            MoneyAmountText.text = $"{AdventureCore.PlayerMoney}";
+            MilkAmountText.text = $"{AdventureCore.PlayerMilk}";
+            CowFoodAmountText.text = $"{AdventureCore.PlayerCowFood}";
+
+            EnterYourFarmButton.interactable = AdventureCore.CanEnterFarm();
+        }
+
+        public void AcceptQuest()
+        {
+            AdventureLogic.AcceptCurrentTownQuest();
+        }
+
+        public void CompleteQuests()
+        {
+            AdventureLogic.CompleteQuestsForCurrentTown();
+        }
+
         private void DrawMap()
         {
             Player = Instantiate(PlayerImage, AdventureMapPanel.transform, false);
@@ -75,22 +101,6 @@ namespace FarmAdventure
                     AddTownToMap(town, TownWithoutPlayerPrefab);
                 }
             }
-        }
-
-        void Update()
-        {
-            MovePlayer();
-
-            CurrentLocationText.text = PrepareCurrentLocationText();
-            QuestLogText.text = PrepareQuestLogText();
-            AcceptQuestButton.interactable = AdventureCore.CanAcceptQuest();
-            CompleteQuestButton.interactable = AdventureCore.CanCompleteQuest();
-
-            MoneyAmountText.text = $"{AdventureCore.PlayerMoney}";
-            MilkAmountText.text = $"{AdventureCore.PlayerMilk}";
-            CowFoodAmountText.text = $"{AdventureCore.PlayerCowFood}";
-
-            EnterYourFarmButton.interactable = AdventureCore.CanEnterFarm();
         }
 
         private void MovePlayer()

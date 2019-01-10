@@ -9,7 +9,7 @@ namespace FarmAdventure
         public int XLocation { get; set; }
         public int YLocation { get; set; }
         public Tuple<int, int> Location { get { return new Tuple<int, int>(XLocation, YLocation); } }
-        
+
         public PlayerInventory Inventory { get; }
         public int Money { get { return Inventory.Money; } }
         public int CowFood { get { return Inventory.CowFood; } }
@@ -24,6 +24,14 @@ namespace FarmAdventure
 
             XLocation = xLocation;
             YLocation = yLocation;
+        }
+
+        public void AcceptQuest(Quest quest)
+        {
+            if (quest != null)
+            {
+                ActiveQuests.Add(quest);
+            }
         }
 
         public bool HasQuestWithDestination(Town town) =>
@@ -42,11 +50,12 @@ namespace FarmAdventure
                 .OrderBy(q => q.Origin.Name)
                 .ToList();
 
-        public void CompleteQuestsForDestination(Town town)
+        public void CompleteQuests(List<Quest> quests)
         {
-            List<Quest> completableQuests = ActiveQuests.Where(q => q.Destination == town).ToList();
-            foreach (var quest in completableQuests)
+            foreach (var quest in quests)
             {
+                if (!ActiveQuests.Contains(quest)) continue;
+
                 Inventory.Add(quest.Reward);
                 ActiveQuests.Remove(quest);
             }
