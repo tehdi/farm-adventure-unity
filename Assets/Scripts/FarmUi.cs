@@ -5,8 +5,6 @@ namespace FarmAdventure
 {
     public class FarmUi : MonoBehaviour
     {
-        private static bool FirstLoad = true;
-
         public GameObject FeedMyCowsButton;
         public GameObject FeedMyCowsButtonText;
         public GameObject MilkMyCowsButton;
@@ -38,13 +36,15 @@ namespace FarmAdventure
 
         void Start()
         {
-            if (!FirstLoad)
+            SceneSwapper.ActiveScene = SceneSwapper.FARM_SCENE_INDEX;
+            
+            if (!FarmCore.FirstLoad)
             {
                 // you've come back from an adventure!
                 ShowMessage("Welcome back!");
             }
 
-            FirstLoad = false;
+            FarmCore.FirstLoad = false;
         }
 
         void Update()

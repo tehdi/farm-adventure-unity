@@ -8,7 +8,6 @@ namespace FarmAdventure
 {
     public class AdventureUi : MonoBehaviour
     {
-        private static bool FirstLoad = true;
         public static int MoveCount = 0;
 
         // player is 32x32 and (0, 0) is the middle of a 480x416 map (32*15 x 32*13)
@@ -47,10 +46,12 @@ namespace FarmAdventure
 
         void Start()
         {
-            if (FirstLoad)
+            SceneSwapper.ActiveScene = SceneSwapper.ADVENTURE_SCENE_INDEX;
+            
+            if (AdventureCore.FirstLoad)
             {
                 AdventureLogic.InitializeNewGame(MIN_X, MAX_X, MIN_Y, MAX_Y, PIXELS_PER_UNIT, MIN_TOWNS, MAX_TOWNS);
-                FirstLoad = false;
+                AdventureCore.FirstLoad = false;
             }
 
             MoveCount = 0;

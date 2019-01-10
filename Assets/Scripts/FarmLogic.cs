@@ -4,6 +4,18 @@ namespace FarmAdventure
 {
     public static class FarmLogic
     {
+        public static void StartNewGame()
+        {
+            FarmCore.FirstLoad = true;
+            FarmCore.Money = 0;
+            FarmCore.Debt = 0;
+            FarmCore.NumberOfCows = 1;
+            FarmCore.BagsOfCowFood = 1;
+            FarmCore.LitresOfMilk = 0;
+            FarmCore.LitresPerCowRemainingToBeMilked = 0;
+            FarmCore.FarmManagerHired = false;
+        }
+
         public static string FeedCows()
         {
             if (FarmCore.NumberOfCows <= 0)

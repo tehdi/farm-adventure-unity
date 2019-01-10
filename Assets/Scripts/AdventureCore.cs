@@ -5,6 +5,8 @@ namespace FarmAdventure
 {
     public class AdventureCore
     {
+        public static bool FirstLoad = true;
+        
         public static Player Player;
         public static Dictionary<Tuple<int, int>, Town> Towns;
         public static Town CurrentTown { get { return Towns.GetValueOrDefault(Player.Location); } }

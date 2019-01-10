@@ -2,6 +2,8 @@
 {
     public class FarmCore
     {
+        public static bool FirstLoad = true;
+        
         // per cow:
         //  2 litres milk per food
         //      * 2 money per litre milk = GROSS 4 money per feed-milk cycle

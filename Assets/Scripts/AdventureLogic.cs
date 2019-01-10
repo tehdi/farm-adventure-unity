@@ -9,6 +9,13 @@ namespace FarmAdventure
         private static Town CurrentTown { get { return AdventureCore.CurrentTown; } }
         private static Random Random = new Random();
 
+        public static void StartNewGame()
+        {
+            AdventureCore.FirstLoad = true;
+            AdventureCore.Player = null;
+            AdventureCore.Towns = null;
+        }
+
         public static void InitializeNewGame(int minX, int maxX, int minY, int maxY, int scale, int minTowns, int maxTowns)
         {
             InitializeTowns(minX, maxX, minY, maxY, scale, minTowns, maxTowns);
