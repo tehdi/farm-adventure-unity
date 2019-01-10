@@ -10,7 +10,7 @@ namespace FarmAdventure
         public int YLocation { get; set; }
         public Tuple<int, int> Location { get { return new Tuple<int, int>(XLocation, YLocation); } }
 
-        public PlayerInventory Inventory { get; }
+        public PlayerInventory Inventory { get; private set; }
         public int Money { get { return Inventory.Money; } }
         public int CowFood { get { return Inventory.CowFood; } }
         public int Milk { get { return Inventory.Milk; } }
@@ -32,6 +32,11 @@ namespace FarmAdventure
             {
                 ActiveQuests.Add(quest);
             }
+        }
+
+        public void ClearInventory()
+        {
+            Inventory = new PlayerInventory();
         }
 
         public bool HasQuestWithDestination(Town town) =>

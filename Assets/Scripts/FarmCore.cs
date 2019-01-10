@@ -10,7 +10,7 @@
         private static readonly int CowBuyPriceMultiplier = 10;
         private static readonly int MilkLitreSellPrice = 2;
         public static readonly int MilkLitresPerFood = 2;
-        private static readonly int FarmManagerSalary = 1;
+        public static readonly int FarmManagerSalary = 1;
 
         public static int Money = 0;
         public static int Debt = 0;

@@ -9,6 +9,7 @@ namespace FarmAdventure
     public class AdventureUi : MonoBehaviour
     {
         private static bool FirstLoad = true;
+        public static int MoveCount = 0;
 
         // player is 32x32 and (0, 0) is the middle of a 480x416 map (32*15 x 32*13)
         private static readonly int PIXELS_PER_UNIT = 32;
@@ -44,8 +45,6 @@ namespace FarmAdventure
         private Town CurrentTown { get { return AdventureCore.CurrentTown; } }
         private Dictionary<Town, GameObject> Towns; // so I can redraw towns when the player enters or leaves them
 
-        private AdventureLogic AdventureLogic = new AdventureLogic();
-
         void Start()
         {
             if (FirstLoad)
@@ -54,6 +53,7 @@ namespace FarmAdventure
                 FirstLoad = false;
             }
 
+            MoveCount = 0;
             DrawMap();
         }
 
@@ -141,6 +141,7 @@ namespace FarmAdventure
             {
                 AdventureLogic.MovePlayerTo((int)Player.transform.localPosition.x, (int)Player.transform.localPosition.y);
                 Player.SetActive(CurrentTown == null); // player image is only shown if player is not in a town
+                MoveCount++;
 
                 if (startTown != null)
                 {

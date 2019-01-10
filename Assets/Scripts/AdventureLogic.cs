@@ -4,25 +4,25 @@ using System.Collections.Generic;
 
 namespace FarmAdventure
 {
-    public class AdventureLogic
+    public static class AdventureLogic
     {
-        private Town CurrentTown { get { return AdventureCore.CurrentTown; } }
-        private Random Random = new Random();
+        private static Town CurrentTown { get { return AdventureCore.CurrentTown; } }
+        private static Random Random = new Random();
 
-        public void InitializeNewGame(int minX, int maxX, int minY, int maxY, int scale, int minTowns, int maxTowns)
+        public static void InitializeNewGame(int minX, int maxX, int minY, int maxY, int scale, int minTowns, int maxTowns)
         {
             InitializeTowns(minX, maxX, minY, maxY, scale, minTowns, maxTowns);
             InitializePlayer();
             QuestFactory.LoadUpSomeQuests(AdventureCore.Towns.Values.ToList());
         }
 
-        public void MovePlayerTo(int xLocation, int yLocation)
+        public static void MovePlayerTo(int xLocation, int yLocation)
         {
             AdventureCore.Player.XLocation = xLocation;
             AdventureCore.Player.YLocation = yLocation;
         }
 
-        public void AcceptCurrentTownQuest()
+        public static void AcceptCurrentTownQuest()
         {
             if (CurrentTown != null)
             {
@@ -32,7 +32,7 @@ namespace FarmAdventure
             }
         }
 
-        public void CompleteQuestsForCurrentTown()
+        public static void CompleteQuestsForCurrentTown()
         {
             if (CurrentTown != null)
             {
@@ -48,7 +48,7 @@ namespace FarmAdventure
 
         // town locations are unscaled, but cleanly divisible by the scale.
         // if your map is 480x352 with a 32p tile size (scale), then you could have a town that says it's at 200-whatever px.
-        private void InitializeTowns(int minX, int maxX, int minY, int maxY, int scale, int minTowns, int maxTowns)
+        private static void InitializeTowns(int minX, int maxX, int minY, int maxY, int scale, int minTowns, int maxTowns)
         {
             int xRange = (maxX - minX) / scale;
             int yRange = (maxY - minY) / scale;
@@ -72,7 +72,7 @@ namespace FarmAdventure
             } while (AdventureCore.Towns.Count < minTowns || AdventureCore.Towns.Count > maxTowns);
         }
 
-        private void InitializePlayer()
+        private static void InitializePlayer()
         {
             var towns = AdventureCore.Towns;
             Town startingTown = towns.Values.ToList().ElementAt(Random.Next(0, towns.Count));
