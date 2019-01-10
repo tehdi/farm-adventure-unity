@@ -10,14 +10,14 @@ namespace FarmAdventure
     {
         private static bool FirstLoad = true;
 
-        // player is 32x32 and (0, 0) is the middle of a 480x352 map (32*15 x 32*11)
+        // player is 32x32 and (0, 0) is the middle of a 480x416 map (32*15 x 32*13)
         private static readonly int PIXELS_PER_UNIT = 32;
         private static readonly int MIN_X = -224; // (224 + (32 / 2)) * 2 = 480
         private static readonly int MAX_X = 224;
-        private static readonly int MIN_Y = -160;
-        private static readonly int MAX_Y = 160;
-        private static readonly int MIN_TOWNS = 5;
-        private static readonly int MAX_TOWNS = 8;
+        private static readonly int MIN_Y = -192; // (192 + (32 / 2)) * 2 = 416
+        private static readonly int MAX_Y = 192;
+        private static readonly int MIN_TOWNS = 6;
+        private static readonly int MAX_TOWNS = 9;
 
         public GameObject AdventureMapPanel;
         public GameObject PlayerImage;
