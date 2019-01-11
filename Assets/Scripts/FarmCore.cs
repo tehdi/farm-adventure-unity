@@ -10,7 +10,7 @@
         //      - 3 money per food = NET 1 money per feed-milk cycle
         public static readonly int CowFoodUnitBuyPrice = 3;
         private static readonly int CowBuyPriceMultiplier = 10;
-        private static readonly int MilkUnitSellPrice = 2;
+        public static readonly int MilkUnitSellPrice = 2;
         public static readonly int MilkUnitsPerFood = 2;
         public static readonly int FarmManagerSalary = 1;
 

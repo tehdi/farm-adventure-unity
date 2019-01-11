@@ -94,12 +94,6 @@ namespace FarmAdventure
             ShowMessage(message);
         }
 
-        public void BorrowMoney()
-        {
-            string message = FarmLogic.BorrowMoney(9, 10);
-            ShowMessage(message);
-        }
-
         public void PayDebt()
         {
             string message = FarmLogic.PayDebt();
