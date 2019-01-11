@@ -9,39 +9,39 @@ namespace FarmAdventure
             FarmCore.FirstLoad = true;
             FarmCore.Money = 0;
             FarmCore.Debt = 0;
-            FarmCore.NumberOfCows = 1;
-            FarmCore.BagsOfCowFood = 1;
-            FarmCore.LitresOfMilk = 0;
-            FarmCore.LitresPerCowRemainingToBeMilked = 0;
+            FarmCore.CowAmount = 1;
+            FarmCore.CowFoodAmount = 1;
+            FarmCore.MilkAmount = 0;
+            FarmCore.MilkUnitsPerCowRemainingToBeMilked = 0;
             FarmCore.FarmManagerHired = false;
         }
 
         public static string FeedCows()
         {
-            if (FarmCore.NumberOfCows <= 0)
+            if (FarmCore.CowAmount <= 0)
             {
                 return "You don't have any cows to feed.";
             }
-            if (FarmCore.BagsOfCowFood < FarmCore.NumberOfCows)
+            if (FarmCore.CowFoodAmount < FarmCore.CowAmount)
             {
                 return "You don't have enough cow food.";
             }
 
-            FarmCore.BagsOfCowFood -= FarmCore.NumberOfCows;
-            FarmCore.LitresPerCowRemainingToBeMilked += FarmCore.MilkLitresPerFood;
-            return $"You fed your {(FarmCore.NumberOfCows == 1 ? "cow" : "cows")}.";
+            FarmCore.CowFoodAmount -= FarmCore.CowAmount;
+            FarmCore.MilkUnitsPerCowRemainingToBeMilked += FarmCore.MilkUnitsPerFood;
+            return $"You fed your {(FarmCore.CowAmount == 1 ? "cow" : "cows")}.";
         }
 
         public static string MilkCows()
         {
-            if (FarmCore.LitresPerCowRemainingToBeMilked <= 0)
+            if (FarmCore.MilkUnitsPerCowRemainingToBeMilked <= 0)
             {
-                return $"Your {(FarmCore.NumberOfCows == 1 ? "cow is" : "cows are")} too hungry to be milked!";
+                return $"Your {(FarmCore.CowAmount == 1 ? "cow is" : "cows are")} too hungry to be milked!";
             }
 
-            FarmCore.LitresOfMilk += FarmCore.NumberOfCows * FarmCore.LitresPerCowRemainingToBeMilked;
-            FarmCore.LitresPerCowRemainingToBeMilked = 0;
-            return $"You milked your {(FarmCore.NumberOfCows == 1 ? "cow" : "cows")}.";
+            FarmCore.MilkAmount += FarmCore.CowAmount * FarmCore.MilkUnitsPerCowRemainingToBeMilked;
+            FarmCore.MilkUnitsPerCowRemainingToBeMilked = 0;
+            return $"You milked your {(FarmCore.CowAmount == 1 ? "cow" : "cows")}.";
         }
 
         public static string BorrowMoney(int borrowAmount, int repayAmount)
@@ -74,34 +74,34 @@ namespace FarmAdventure
 
         public static string SellMilk()
         {
-            if (FarmCore.LitresOfMilk <= 0)
+            if (FarmCore.MilkAmount <= 0)
             {
                 return "You don't have any milk to sell.";
             }
 
             FarmCore.Money += FarmCore.CalculateTotalMilkSellPrice();
-            FarmCore.LitresOfMilk = 0;
+            FarmCore.MilkAmount = 0;
             return "You sold all your milk.";
         }
 
         public static string BuyCowFood(int foodToBuy)
         {
-            if (FarmCore.Money < FarmCore.CowFoodBagBuyPrice * foodToBuy)
+            if (FarmCore.Money < FarmCore.CowFoodUnitBuyPrice * foodToBuy)
             {
                 return $"You don't have enough money to buy {foodToBuy} cow food.";
             }
 
-            FarmCore.BagsOfCowFood += foodToBuy;
-            FarmCore.Money -= FarmCore.CowFoodBagBuyPrice * foodToBuy;
+            FarmCore.CowFoodAmount += foodToBuy;
+            FarmCore.Money -= FarmCore.CowFoodUnitBuyPrice * foodToBuy;
             return $"You bought {foodToBuy} bag{(foodToBuy == 1 ? "" : "s")} of cow food.";
         }
         
         public static void BuyOneFoodPerCow()
         {
             // if can't afford one food per cow, buy max affordable
-            int foodToBuy = Math.Min(FarmCore.NumberOfCows, FarmCore.Money / FarmCore.CowFoodBagBuyPrice);
-            FarmCore.BagsOfCowFood += foodToBuy;
-            FarmCore.Money -= FarmCore.CowFoodBagBuyPrice * foodToBuy;
+            int foodToBuy = Math.Min(FarmCore.CowAmount, FarmCore.Money / FarmCore.CowFoodUnitBuyPrice);
+            FarmCore.CowFoodAmount += foodToBuy;
+            FarmCore.Money -= FarmCore.CowFoodUnitBuyPrice * foodToBuy;
         }
 
         public static string BuyACow()
@@ -116,7 +116,7 @@ namespace FarmAdventure
             }
 
             FarmCore.Money -= FarmCore.CalculateNextCowBuyPrice();
-            FarmCore.NumberOfCows++;
+            FarmCore.CowAmount++;
             return "You bought a new cow!";
         }
 

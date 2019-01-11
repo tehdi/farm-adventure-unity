@@ -42,8 +42,8 @@ namespace FarmAdventure
             FarmManager.Farm(AdventureUi.MoveCount);
 
             FarmCore.Money += AdventureCore.PlayerMoney;
-            FarmCore.LitresOfMilk += AdventureCore.PlayerMilk;
-            FarmCore.BagsOfCowFood += AdventureCore.PlayerCowFood;
+            FarmCore.MilkAmount += AdventureCore.PlayerMilk;
+            FarmCore.CowFoodAmount += AdventureCore.PlayerCowFood;
             AdventureCore.Player.ClearInventory();
 
             SceneManager.LoadScene(FARM_SCENE_INDEX);

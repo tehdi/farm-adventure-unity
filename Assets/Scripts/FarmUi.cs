@@ -50,9 +50,9 @@ namespace FarmAdventure
         void Update()
         {
             FeedMyCowsButton.interactable = FarmCore.CanFeedCows();
-            FeedMyCowsButtonText.text = $"Feed My Cow{(FarmCore.NumberOfCows == 1 ? "" : "s")}";
+            FeedMyCowsButtonText.text = $"Feed My Cow{(FarmCore.CowAmount == 1 ? "" : "s")}";
             MilkMyCowsButton.interactable = FarmCore.CanMilkCows();
-            MilkMyCowsButtonText.text = $"Milk My Cow{(FarmCore.NumberOfCows == 1 ? "" : "s")}";
+            MilkMyCowsButtonText.text = $"Milk My Cow{(FarmCore.CowAmount == 1 ? "" : "s")}";
 
             BorrowMoneyButton.interactable = FarmCore.CanBorrowMoney();
             MoneyAmountText.text = $"{FarmCore.Money}";
@@ -60,18 +60,18 @@ namespace FarmAdventure
             DebtAmountText.text = $"{FarmCore.Debt}";
 
             SellMilkButton.interactable = FarmCore.CanSellMilk();
-            MilkAmountText.text = $"{FarmCore.LitresOfMilk}";
+            MilkAmountText.text = $"{FarmCore.MilkAmount}";
             MilkSellPriceAmountText.text = $"{FarmCore.CalculateTotalMilkSellPrice()}";
 
             CowFoodBuyAmountSlider.interactable = FarmCore.CanBuyCowFood(1);
-            int selectedCowFoodBuyAmount = Mathf.Max(1, (int)CowFoodBuyAmountSlider.GetComponent<Slider>().value);
+            int selectedCowFoodBuyAmount = Mathf.Max(1, (int)CowFoodBuyAmountSlider.value);
             BuyCowFoodButton.interactable = FarmCore.CanBuyCowFood(selectedCowFoodBuyAmount);
             BuyCowFoodButtonText.text = $"Buy {selectedCowFoodBuyAmount} Cow Food";
-            CowFoodAmountText.text = $"{FarmCore.BagsOfCowFood}";
-            CowFoodBuyPriceAmountText.text = $"{selectedCowFoodBuyAmount * FarmCore.CowFoodBagBuyPrice}";
+            CowFoodAmountText.text = $"{FarmCore.CowFoodAmount}";
+            CowFoodBuyPriceAmountText.text = $"{FarmCore.CalculateCowFoodBuyPrice(selectedCowFoodBuyAmount)}";
 
             BuyACowButton.interactable = FarmCore.CanBuyCow();
-            CowAmountText.text = $"{FarmCore.NumberOfCows}";
+            CowAmountText.text = $"{FarmCore.CowAmount}";
             BuyACowPriceAmountText.text = $"{FarmCore.CalculateNextCowBuyPrice()}";
 
             FarmManagerText.gameObject.SetActive(FarmCore.HasFarmManager());
@@ -114,7 +114,7 @@ namespace FarmAdventure
 
         public void BuyCowFood()
         {
-            int selectedCowFoodBuyAmount = (int)CowFoodBuyAmountSlider.GetComponent<Slider>().value;
+            int selectedCowFoodBuyAmount = (int)CowFoodBuyAmountSlider.value;
             string message = FarmLogic.BuyCowFood(selectedCowFoodBuyAmount);
             ShowMessage(message);
         }
