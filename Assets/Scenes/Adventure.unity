@@ -1807,16 +1807,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AdventureMapPanel: {fileID: 2080294918}
-  PlayerImage: {fileID: 1696688535260234036, guid: e90d3b1a9f1e9474481c48b108d3a124,
+  PlayerPrefab: {fileID: 1696688535260234036, guid: e90d3b1a9f1e9474481c48b108d3a124,
     type: 3}
   TownWithoutPlayerPrefab: {fileID: 2293828068015208183, guid: 4f5dc1c76f1350247a2625b92e85d3df,
     type: 3}
   TownWithPlayerPrefab: {fileID: 2293828068015208183, guid: 1c97a47e899069c4f95a7f46f2fe9f04,
     type: 3}
-  MoveNorthButton: {fileID: 0}
-  MoveWestButton: {fileID: 0}
-  MoveEastButton: {fileID: 0}
-  MoveSouthButton: {fileID: 0}
   CurrentLocationText: {fileID: 217262944}
   QuestLogText: {fileID: 1725227500}
   AcceptQuestButton: {fileID: 1504038116}

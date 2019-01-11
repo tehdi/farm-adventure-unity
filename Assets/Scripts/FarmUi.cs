@@ -5,34 +5,34 @@ namespace FarmAdventure
 {
     public class FarmUi : MonoBehaviour
     {
-        public GameObject FeedMyCowsButton;
-        public GameObject FeedMyCowsButtonText;
-        public GameObject MilkMyCowsButton;
-        public GameObject MilkMyCowsButtonText;
-        public GameObject ActionLogText;
+        public Button FeedMyCowsButton;
+        public Text FeedMyCowsButtonText;
+        public Button MilkMyCowsButton;
+        public Text MilkMyCowsButtonText;
+        public Text ActionLogText;
 
-        public GameObject BorrowMoneyButton;
-        public GameObject MoneyAmountText;
-        public GameObject PayDebtButton;
-        public GameObject DebtAmountText;
+        public Button BorrowMoneyButton;
+        public Text MoneyAmountText;
+        public Button PayDebtButton;
+        public Text DebtAmountText;
 
-        public GameObject SellMilkButton;
-        public GameObject MilkAmountText;
-        public GameObject MilkSellPriceAmountText;
+        public Button SellMilkButton;
+        public Text MilkAmountText;
+        public Text MilkSellPriceAmountText;
 
-        public GameObject BuyCowFoodButton;
-        public GameObject BuyCowFoodButtonText;
-        public GameObject CowFoodAmountText;
-        public GameObject CowFoodBuyPriceAmountText;
-        public GameObject CowFoodBuyAmountSlider;
+        public Button BuyCowFoodButton;
+        public Text BuyCowFoodButtonText;
+        public Text CowFoodAmountText;
+        public Text CowFoodBuyPriceAmountText;
+        public Slider CowFoodBuyAmountSlider;
 
-        public GameObject BuyACowButton;
-        public GameObject CowAmountText;
-        public GameObject BuyACowPriceAmountText;
+        public Button BuyACowButton;
+        public Text CowAmountText;
+        public Text BuyACowPriceAmountText;
 
-        public GameObject FarmManagerText;
-        public GameObject HireAFarmManagerButton;
-        public GameObject GoOnAnAdventureButton;
+        public Text FarmManagerText;
+        public Button HireAFarmManagerButton;
+        public Button GoOnAnAdventureButton;
 
         void Start()
         {
@@ -49,36 +49,37 @@ namespace FarmAdventure
 
         void Update()
         {
-            FeedMyCowsButton.GetComponent<Button>().interactable = FarmCore.CanFeedCows();
-            FeedMyCowsButtonText.GetComponent<Text>().text = $"Feed My Cow{(FarmCore.NumberOfCows == 1 ? "" : "s")}";
-            MilkMyCowsButton.GetComponent<Button>().interactable = FarmCore.CanMilkCows();
-            MilkMyCowsButtonText.GetComponent<Text>().text = $"Milk My Cow{(FarmCore.NumberOfCows == 1 ? "" : "s")}";
+            FeedMyCowsButton.interactable = FarmCore.CanFeedCows();
+            FeedMyCowsButtonText.text = $"Feed My Cow{(FarmCore.NumberOfCows == 1 ? "" : "s")}";
+            MilkMyCowsButton.interactable = FarmCore.CanMilkCows();
+            MilkMyCowsButtonText.text = $"Milk My Cow{(FarmCore.NumberOfCows == 1 ? "" : "s")}";
 
-            BorrowMoneyButton.GetComponent<Button>().interactable = FarmCore.CanBorrowMoney();
-            MoneyAmountText.GetComponent<Text>().text = $"{FarmCore.Money}";
-            PayDebtButton.GetComponent<Button>().interactable = FarmCore.CanPayDebt();
-            DebtAmountText.GetComponent<Text>().text = $"{FarmCore.Debt}";
+            BorrowMoneyButton.interactable = FarmCore.CanBorrowMoney();
+            MoneyAmountText.text = $"{FarmCore.Money}";
+            PayDebtButton.interactable = FarmCore.CanPayDebt();
+            DebtAmountText.text = $"{FarmCore.Debt}";
 
-            SellMilkButton.GetComponent<Button>().interactable = FarmCore.CanSellMilk();
-            MilkAmountText.GetComponent<Text>().text = $"{FarmCore.LitresOfMilk}";
-            MilkSellPriceAmountText.GetComponent<Text>().text = $"{FarmCore.CalculateTotalMilkSellPrice()}";
+            SellMilkButton.interactable = FarmCore.CanSellMilk();
+            MilkAmountText.text = $"{FarmCore.LitresOfMilk}";
+            MilkSellPriceAmountText.text = $"{FarmCore.CalculateTotalMilkSellPrice()}";
 
-            CowFoodBuyAmountSlider.GetComponent<Slider>().interactable = FarmCore.CanBuyCowFood(1);
+            CowFoodBuyAmountSlider.interactable = FarmCore.CanBuyCowFood(1);
             int selectedCowFoodBuyAmount = Mathf.Max(1, (int)CowFoodBuyAmountSlider.GetComponent<Slider>().value);
-            BuyCowFoodButton.GetComponent<Button>().interactable = FarmCore.CanBuyCowFood(selectedCowFoodBuyAmount);
-            BuyCowFoodButtonText.GetComponent<Text>().text = $"Buy {selectedCowFoodBuyAmount} Cow Food";
-            CowFoodAmountText.GetComponent<Text>().text = $"{FarmCore.BagsOfCowFood}";
-            CowFoodBuyPriceAmountText.GetComponent<Text>().text = $"{selectedCowFoodBuyAmount * FarmCore.CowFoodBagBuyPrice}";
+            BuyCowFoodButton.interactable = FarmCore.CanBuyCowFood(selectedCowFoodBuyAmount);
+            BuyCowFoodButtonText.text = $"Buy {selectedCowFoodBuyAmount} Cow Food";
+            CowFoodAmountText.text = $"{FarmCore.BagsOfCowFood}";
+            CowFoodBuyPriceAmountText.text = $"{selectedCowFoodBuyAmount * FarmCore.CowFoodBagBuyPrice}";
 
-            BuyACowButton.GetComponent<Button>().interactable = FarmCore.CanBuyCow();
-            CowAmountText.GetComponent<Text>().text = $"{FarmCore.NumberOfCows}";
-            BuyACowPriceAmountText.GetComponent<Text>().text = $"{FarmCore.CalculateNextCowBuyPrice()}";
+            BuyACowButton.interactable = FarmCore.CanBuyCow();
+            CowAmountText.text = $"{FarmCore.NumberOfCows}";
+            BuyACowPriceAmountText.text = $"{FarmCore.CalculateNextCowBuyPrice()}";
 
-            FarmManagerText.SetActive(FarmCore.HasFarmManager());
-            HireAFarmManagerButton.SetActive(!FarmCore.HasFarmManager());
-            HireAFarmManagerButton.GetComponent<Button>().interactable = FarmCore.CanHireFarmManager();
-            GoOnAnAdventureButton.SetActive(FarmCore.HasFarmManager());
-            GoOnAnAdventureButton.GetComponent<Button>().interactable = FarmCore.CanGoOnAdventure();
+            FarmManagerText.gameObject.SetActive(FarmCore.HasFarmManager());
+
+            HireAFarmManagerButton.gameObject.SetActive(!FarmCore.HasFarmManager());
+            HireAFarmManagerButton.interactable = FarmCore.CanHireFarmManager();
+            GoOnAnAdventureButton.gameObject.SetActive(FarmCore.HasFarmManager());
+            GoOnAnAdventureButton.interactable = FarmCore.CanGoOnAdventure();
         }
 
         public void FeedCows()
@@ -95,7 +96,6 @@ namespace FarmAdventure
 
         public void BorrowMoney()
         {
-            // TODO: confirmation prompt
             string message = FarmLogic.BorrowMoney(9, 10);
             ShowMessage(message);
         }
@@ -133,7 +133,7 @@ namespace FarmAdventure
 
         private void ShowMessage(string message)
         {
-            ActionLogText.GetComponent<Text>().text = message;
+            ActionLogText.text = message;
         }
     }
 }

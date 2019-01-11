@@ -2808,29 +2808,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d2fd7a1f18a404495fe916fcb2dc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FeedMyCowsButton: {fileID: 1546400403}
-  FeedMyCowsButtonText: {fileID: 1201733955}
-  MilkMyCowsButton: {fileID: 211711924}
-  MilkMyCowsButtonText: {fileID: 938469392}
-  ActionLogText: {fileID: 1326077854}
-  BorrowMoneyButton: {fileID: 1719502855}
-  MoneyAmountText: {fileID: 697754439}
-  PayDebtButton: {fileID: 14253771}
-  DebtAmountText: {fileID: 511262692}
-  SellMilkButton: {fileID: 1805013575}
-  MilkAmountText: {fileID: 1324499519}
-  MilkSellPriceAmountText: {fileID: 1181648442}
-  BuyCowFoodButton: {fileID: 1775783000}
-  BuyCowFoodButtonText: {fileID: 1409147383}
-  CowFoodAmountText: {fileID: 2126480220}
-  CowFoodBuyPriceAmountText: {fileID: 1965001112}
-  CowFoodBuyAmountSlider: {fileID: 321046788}
-  BuyACowButton: {fileID: 1336365446}
-  CowAmountText: {fileID: 726682540}
-  BuyACowPriceAmountText: {fileID: 807362274}
-  FarmManagerText: {fileID: 543148530}
-  HireAFarmManagerButton: {fileID: 1298407059}
-  GoOnAnAdventureButton: {fileID: 1760251017}
+  FeedMyCowsButton: {fileID: 1546400405}
+  FeedMyCowsButtonText: {fileID: 1201733957}
+  MilkMyCowsButton: {fileID: 211711926}
+  MilkMyCowsButtonText: {fileID: 938469394}
+  ActionLogText: {fileID: 1326077856}
+  BorrowMoneyButton: {fileID: 1719502857}
+  MoneyAmountText: {fileID: 697754441}
+  PayDebtButton: {fileID: 14253773}
+  DebtAmountText: {fileID: 511262694}
+  SellMilkButton: {fileID: 1805013577}
+  MilkAmountText: {fileID: 1324499521}
+  MilkSellPriceAmountText: {fileID: 1181648444}
+  BuyCowFoodButton: {fileID: 1775783002}
+  BuyCowFoodButtonText: {fileID: 1409147385}
+  CowFoodAmountText: {fileID: 2126480222}
+  CowFoodBuyPriceAmountText: {fileID: 1965001114}
+  CowFoodBuyAmountSlider: {fileID: 321046790}
+  BuyACowButton: {fileID: 1336365448}
+  CowAmountText: {fileID: 726682542}
+  BuyACowPriceAmountText: {fileID: 807362276}
+  FarmManagerText: {fileID: 543148532}
+  HireAFarmManagerButton: {fileID: 1298407061}
+  GoOnAnAdventureButton: {fileID: 1760251019}
 --- !u!1 &1402974763
 GameObject:
   m_ObjectHideFlags: 0

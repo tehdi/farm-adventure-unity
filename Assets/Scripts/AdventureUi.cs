@@ -20,7 +20,7 @@ namespace FarmAdventure
         private static readonly int MAX_TOWNS = 9;
 
         public GameObject AdventureMapPanel;
-        public GameObject PlayerImage;
+        public GameObject PlayerPrefab;
         private GameObject Player;
         public GameObject TownWithoutPlayerPrefab;
         public GameObject TownWithPlayerPrefab;
@@ -81,7 +81,7 @@ namespace FarmAdventure
 
         private void DrawMap()
         {
-            Player = Instantiate(PlayerImage, AdventureMapPanel.transform, false);
+            Player = Instantiate(PlayerPrefab, AdventureMapPanel.transform, false);
             Player.transform.localPosition = new Vector2(AdventureCore.PlayerXLocation, AdventureCore.PlayerYLocation);
             Player.SetActive(CurrentTown == null); // if player is in a town, player image isn't shown
 
